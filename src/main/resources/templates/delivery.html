@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delivery</title>
+    <title>Order Delivery</title>
 </head>
 
 <body>
@@ -50,9 +50,9 @@
                     Rush Order?
                 </td>
                 <td>
-                    <input type="checkbox" name="isRush" data-th-field="*{isRush}" />
-                    <div data-th-if="#{fields.hasErrors('isRush')}">
-                        <span data-th-errors="*{isRush}" data-th-errorclass="error"></span>
+                    <input type="checkbox" data-th-field="*{rush}" />
+                    <div data-th-if="#{fields.hasErrors('rush')}">
+                        <span data-th-errors="*{rush}" data-th-errorclass="error"></span>
                     </div>
                 </td>
             </tr>
@@ -65,8 +65,11 @@
                 </td>
             </tr>
             <tr>
-                <button type="submit" formmethod="get" formaction="/">Cancel Order</button>
-                <button type="submit">Place Order</button>
+                <td>
+                    <button type="submit" formmethod="get" formaction="/">Cancel Order</button>
+                    <button type="submit">Place Order</button>
+                </td>
+
             </tr>
         </table>
     </form>

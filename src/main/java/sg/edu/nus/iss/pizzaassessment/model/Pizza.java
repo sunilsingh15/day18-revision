@@ -6,7 +6,7 @@ import jakarta.json.JsonObject;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
-public class Pizza implements Serializable{
+public class Pizza implements Serializable {
 
     @NotNull(message = "Must select a pizza!")
     private String pizza;
@@ -47,10 +47,7 @@ public class Pizza implements Serializable{
         p.setSize(o.getString("size"));
         p.setQuantity(o.getInt("quantity"));
 
-
         return p;
     }
-
-    
 
 }

@@ -2,23 +2,25 @@ package sg.edu.nus.iss.pizzaassessment.model;
 
 import java.io.Serializable;
 
+import jakarta.json.JsonObject;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class Delivery implements Serializable {
 
-    @NotBlank(message = "Please state your name")
+    @NotBlank(message = "Please enter your name!")
     @Size(min = 3, message = "Name cannot be less than 3 characters")
     private String name;
 
-    @NotBlank
+    @NotBlank(message = "Please enter your address!")
     private String address;
 
     @NotBlank
-    @Size(min = 8)
+    @Pattern(regexp = "^[0-9]{8,}$", message = "Please enter a valid phone number!")
     private String phoneNum;
 
-    private boolean isRush = false;
+    private boolean rush = false;
 
     private String comments;
 
@@ -47,11 +49,11 @@ public class Delivery implements Serializable {
     }
 
     public boolean isRush() {
-        return isRush;
+        return rush;
     }
 
-    public void setRush(boolean isRush) {
-        this.isRush = isRush;
+    public void setRush(boolean rush) {
+        this.rush = rush;
     }
 
     public String getComments() {
@@ -60,6 +62,17 @@ public class Delivery implements Serializable {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public static Delivery create(JsonObject o) {
+        Delivery d = new Delivery();
+        d.setName(o.getString("name"));
+        d.setAddress(o.getString("address"));
+        d.setPhoneNum(o.getString("phone"));
+        d.setRush(o.getBoolean("rush"));
+        d.setComments(o.getString("comments"));
+
+        return d;
     }
 
 }
